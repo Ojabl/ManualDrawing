@@ -1,4 +1,10 @@
 ﻿using System.Drawing;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System;
 
 namespace ManualDrawing
 {
@@ -32,5 +38,10 @@ namespace ManualDrawing
                   }
               );
         }
+
+        public override float MinX() { return Math.Min(ax, Math.Min(bx,cx)); }
+        public override float MaxX() { return Math.Max(ax, Math.Max(bx,cx)); }
+        public override float MinY() { return Math.Min(ay, Math.Min(by,cy)); }
+        public override float MaxY() { return Math.Max(ay, Math.Max(by,cy)); }
     }
 }

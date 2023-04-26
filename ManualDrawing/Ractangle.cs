@@ -39,5 +39,10 @@ namespace ManualDrawing
                 }
                 );
         }
+
+        public override float MinX() { return Math.Min(Math.Min(ax,bx), Math.Min(cx,dx)); }
+        public override float MaxX() { return Math.Max(Math.Max(ax,bx), Math.Max(cx,dx)); }
+        public override float MinY() { return Math.Min(Math.Min(ay,by), Math.Min(cy,dy)); }
+        public override float MaxY() { return Math.Max(Math.Max(ay,by), Math.Max(cy,dy)); }
     }
 }

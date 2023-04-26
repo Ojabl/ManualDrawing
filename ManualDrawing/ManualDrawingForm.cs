@@ -22,6 +22,60 @@ namespace ManualDrawing
             CbShapes_ParametersChanged(null, null);
         }
 
+        private void DrawAll()
+        {
+            float minX = 0;
+            float minY = 0;
+            float maxX = 0;
+            float maxY = 0;
+
+            float imgWidth = PbImage.Width;
+            float imgHeight = PbImage.Height;
+
+            bool first = true;
+
+            foreach(Shape shape in LbShapes.Items)
+            {
+                if (first)
+                {
+                    minX = shape.MinX();
+                    maxX = shape.MaxX();
+                    minY = shape.MinY();
+                    maxY = shape.MaxY();
+                    first = false;
+                }
+                else
+                {
+                    minX = Math.Min(minX, shape.MinX());
+                    maxX = Math.Max(maxX, shape.MaxX());
+                    minY = Math.Min(minY, shape.MinY());
+                    maxY = Math.Max(maxY, shape.MaxY());
+                }
+            }
+
+            float shiftX = (maxX - minX) * 0.05f;
+            float shiftY = (maxY - minY) * 0.05f;
+            
+
+            minX -= shiftX;
+            maxX += shiftX;
+            minY -= shiftY;
+            maxY += shiftY;
+
+            float scaleX = panel2.Width / (maxX - minX);
+            float scaleY = panel2.Height / (maxY - minY);
+            float scale = Math.Min(scaleX, scaleY);
+
+            Bitmap bmp = new Bitmap((int)(scale * (maxX - minX)), (int)(scale * (maxY - minY)));
+            Graphics g = Graphics.FromImage(bmp);
+            PointF shift = new PointF(minX, minY);
+            foreach (Shape Sh in LbShapes.Items)
+            {
+                Sh.Draw(g, shift, scale);
+            }
+            PbImage.Image = bmp;
+        }
+
         private void AdjustControl()
         {
             int ListSize = LbShapes.Items.Count;
@@ -41,7 +95,7 @@ namespace ManualDrawing
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             LbShapes.Items.Add(shape);
-            Draw();
+            DrawAll();
 
             LbShapes.SelectedIndex = LbShapes.Items.Count - 1;
 
@@ -65,13 +119,12 @@ namespace ManualDrawing
                     LbShapes.SelectedIndex = selectedIndex - 1;
                 }
 
-
-                Draw();
+                DrawAll();
                 AdjustControl();
             }
         }
 
-            private void BtnUp_Click(object sender, EventArgs e)
+        private void BtnUp_Click(object sender, EventArgs e)
         {
             int index = LbShapes.SelectedIndex;
 
@@ -82,7 +135,7 @@ namespace ManualDrawing
                 LbShapes.Items.Insert(index - 1, selectedItem);
                 LbShapes.SelectedIndex = index - 1;
             }
-            Draw();
+            DrawAll();
             AdjustControl();
         }
 
@@ -97,7 +150,7 @@ namespace ManualDrawing
                 LbShapes.SelectedIndex = selectedIndex + 1;
             }
 
-            Draw();
+            DrawAll();
             AdjustControl();
         }
 
@@ -113,15 +166,9 @@ namespace ManualDrawing
             AdjustControl();
         }
 
-        private void Draw()
+        private void panel2_Resize(object sender, EventArgs e)
         {
-            Bitmap bmp = new Bitmap(400, 400);
-            Graphics g = Graphics.FromImage(bmp);
-            foreach (Shape Sh in LbShapes.Items)
-            {
-                Sh.Draw(g, new PointF(0, 0), 1);
-            }
-            PbImage.Image = bmp;
+            DrawAll();
         }
     }
 }

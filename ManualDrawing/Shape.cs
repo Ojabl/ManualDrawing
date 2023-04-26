@@ -27,8 +27,13 @@ namespace ManualDrawing
         }
         public static float Scale(float value,float shift,float scale)
         {
-            return value * scale + shift;
+            return (value - shift) * scale;
         }
         public abstract void Draw(Graphics g, PointF shift, float scale);
+
+        public abstract float MinX();
+        public abstract float MaxX();
+        public abstract float MinY();
+        public abstract float MaxY();
     }
 }

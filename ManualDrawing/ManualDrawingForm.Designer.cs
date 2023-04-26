@@ -30,6 +30,12 @@
         {
             this.PnlLeft = new System.Windows.Forms.Panel();
             this.PnlList = new System.Windows.Forms.Panel();
+            this.LbShapes = new System.Windows.Forms.ListBox();
+            this.PanelButtons = new System.Windows.Forms.Panel();
+            this.BtnAdd = new System.Windows.Forms.Button();
+            this.BtnRemove = new System.Windows.Forms.Button();
+            this.BtnDn = new System.Windows.Forms.Button();
+            this.BtnUp = new System.Windows.Forms.Button();
             this.PnlParameters = new System.Windows.Forms.Panel();
             this.LblParameters = new System.Windows.Forms.Label();
             this.TbParameters = new System.Windows.Forms.TextBox();
@@ -38,19 +44,13 @@
             this.CbShapes = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.PbImage = new System.Windows.Forms.PictureBox();
-            this.PanelButtons = new System.Windows.Forms.Panel();
-            this.LbShapes = new System.Windows.Forms.ListBox();
-            this.BtnUp = new System.Windows.Forms.Button();
-            this.BtnDn = new System.Windows.Forms.Button();
-            this.BtnRemove = new System.Windows.Forms.Button();
-            this.BtnAdd = new System.Windows.Forms.Button();
             this.PnlLeft.SuspendLayout();
             this.PnlList.SuspendLayout();
+            this.PanelButtons.SuspendLayout();
             this.PnlParameters.SuspendLayout();
             this.PnlShapes.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbImage)).BeginInit();
-            this.PanelButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlLeft
@@ -75,6 +75,73 @@
             this.PnlList.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.PnlList.Size = new System.Drawing.Size(163, 416);
             this.PnlList.TabIndex = 3;
+            // 
+            // LbShapes
+            // 
+            this.LbShapes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LbShapes.FormattingEnabled = true;
+            this.LbShapes.Location = new System.Drawing.Point(0, 8);
+            this.LbShapes.Name = "LbShapes";
+            this.LbShapes.Size = new System.Drawing.Size(163, 300);
+            this.LbShapes.TabIndex = 3;
+            // 
+            // PanelButtons
+            // 
+            this.PanelButtons.Controls.Add(this.BtnAdd);
+            this.PanelButtons.Controls.Add(this.BtnRemove);
+            this.PanelButtons.Controls.Add(this.BtnDn);
+            this.PanelButtons.Controls.Add(this.BtnUp);
+            this.PanelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PanelButtons.Location = new System.Drawing.Point(0, 308);
+            this.PanelButtons.Name = "PanelButtons";
+            this.PanelButtons.Size = new System.Drawing.Size(163, 100);
+            this.PanelButtons.TabIndex = 2;
+            // 
+            // BtnAdd
+            // 
+            this.BtnAdd.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BtnAdd.Location = new System.Drawing.Point(40, 60);
+            this.BtnAdd.Name = "BtnAdd";
+            this.BtnAdd.Size = new System.Drawing.Size(83, 40);
+            this.BtnAdd.TabIndex = 3;
+            this.BtnAdd.Text = "Dodaj";
+            this.BtnAdd.UseVisualStyleBackColor = true;
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            // 
+            // BtnRemove
+            // 
+            this.BtnRemove.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnRemove.Location = new System.Drawing.Point(40, 0);
+            this.BtnRemove.Name = "BtnRemove";
+            this.BtnRemove.Size = new System.Drawing.Size(83, 40);
+            this.BtnRemove.TabIndex = 2;
+            this.BtnRemove.Text = "Usuń";
+            this.BtnRemove.UseVisualStyleBackColor = true;
+            this.BtnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
+            // 
+            // BtnDn
+            // 
+            this.BtnDn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.BtnDn.Location = new System.Drawing.Point(123, 0);
+            this.BtnDn.MaximumSize = new System.Drawing.Size(50, 0);
+            this.BtnDn.Name = "BtnDn";
+            this.BtnDn.Size = new System.Drawing.Size(40, 100);
+            this.BtnDn.TabIndex = 1;
+            this.BtnDn.Text = "▼";
+            this.BtnDn.UseVisualStyleBackColor = true;
+            this.BtnDn.Click += new System.EventHandler(this.BtnDn_Click);
+            // 
+            // BtnUp
+            // 
+            this.BtnUp.Dock = System.Windows.Forms.DockStyle.Left;
+            this.BtnUp.Location = new System.Drawing.Point(0, 0);
+            this.BtnUp.MaximumSize = new System.Drawing.Size(50, 0);
+            this.BtnUp.Name = "BtnUp";
+            this.BtnUp.Size = new System.Drawing.Size(40, 100);
+            this.BtnUp.TabIndex = 0;
+            this.BtnUp.Text = "▲";
+            this.BtnUp.UseVisualStyleBackColor = true;
+            this.BtnUp.Click += new System.EventHandler(this.BtnUp_Click);
             // 
             // PnlParameters
             // 
@@ -145,6 +212,7 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 8, 8, 8);
             this.panel2.Size = new System.Drawing.Size(910, 510);
             this.panel2.TabIndex = 1;
+            this.panel2.Resize += new System.EventHandler(this.panel2_Resize);
             // 
             // PbImage
             // 
@@ -152,75 +220,9 @@
             this.PbImage.Location = new System.Drawing.Point(0, 8);
             this.PbImage.Name = "PbImage";
             this.PbImage.Size = new System.Drawing.Size(902, 494);
+            this.PbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.PbImage.TabIndex = 0;
             this.PbImage.TabStop = false;
-            // 
-            // PanelButtons
-            // 
-            this.PanelButtons.Controls.Add(this.BtnAdd);
-            this.PanelButtons.Controls.Add(this.BtnRemove);
-            this.PanelButtons.Controls.Add(this.BtnDn);
-            this.PanelButtons.Controls.Add(this.BtnUp);
-            this.PanelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelButtons.Location = new System.Drawing.Point(0, 308);
-            this.PanelButtons.Name = "PanelButtons";
-            this.PanelButtons.Size = new System.Drawing.Size(163, 100);
-            this.PanelButtons.TabIndex = 2;
-            // 
-            // LbShapes
-            // 
-            this.LbShapes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbShapes.FormattingEnabled = true;
-            this.LbShapes.Location = new System.Drawing.Point(0, 8);
-            this.LbShapes.Name = "LbShapes";
-            this.LbShapes.Size = new System.Drawing.Size(163, 300);
-            this.LbShapes.TabIndex = 3;
-            // 
-            // BtnUp
-            // 
-            this.BtnUp.Dock = System.Windows.Forms.DockStyle.Left;
-            this.BtnUp.Location = new System.Drawing.Point(0, 0);
-            this.BtnUp.MaximumSize = new System.Drawing.Size(50, 0);
-            this.BtnUp.Name = "BtnUp";
-            this.BtnUp.Size = new System.Drawing.Size(40, 100);
-            this.BtnUp.TabIndex = 0;
-            this.BtnUp.Text = "▲";
-            this.BtnUp.UseVisualStyleBackColor = true;
-            this.BtnUp.Click += new System.EventHandler(this.BtnUp_Click);
-            // 
-            // BtnDn
-            // 
-            this.BtnDn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.BtnDn.Location = new System.Drawing.Point(123, 0);
-            this.BtnDn.MaximumSize = new System.Drawing.Size(50, 0);
-            this.BtnDn.Name = "BtnDn";
-            this.BtnDn.Size = new System.Drawing.Size(40, 100);
-            this.BtnDn.TabIndex = 1;
-            this.BtnDn.Text = "▼";
-            this.BtnDn.UseVisualStyleBackColor = true;
-            this.BtnDn.Click += new System.EventHandler(this.BtnDn_Click);
-            // 
-            // BtnRemove
-            // 
-            this.BtnRemove.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnRemove.Location = new System.Drawing.Point(40, 0);
-            this.BtnRemove.Name = "BtnRemove";
-            this.BtnRemove.Size = new System.Drawing.Size(83, 40);
-            this.BtnRemove.TabIndex = 2;
-            this.BtnRemove.Text = "Usuń";
-            this.BtnRemove.UseVisualStyleBackColor = true;
-            this.BtnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
-            // 
-            // BtnAdd
-            // 
-            this.BtnAdd.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BtnAdd.Location = new System.Drawing.Point(40, 60);
-            this.BtnAdd.Name = "BtnAdd";
-            this.BtnAdd.Size = new System.Drawing.Size(83, 40);
-            this.BtnAdd.TabIndex = 3;
-            this.BtnAdd.Text = "Dodaj";
-            this.BtnAdd.UseVisualStyleBackColor = true;
-            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // ManualDrawingForm
             // 
@@ -233,13 +235,13 @@
             this.Text = "Form1";
             this.PnlLeft.ResumeLayout(false);
             this.PnlList.ResumeLayout(false);
+            this.PanelButtons.ResumeLayout(false);
             this.PnlParameters.ResumeLayout(false);
             this.PnlParameters.PerformLayout();
             this.PnlShapes.ResumeLayout(false);
             this.PnlShapes.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PbImage)).EndInit();
-            this.PanelButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
